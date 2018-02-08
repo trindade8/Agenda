@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.alura.agenda.ListaAlunosActivity">
+
+    <item
+        android:id="@+id/menu_lista_enviar"
+        android:title="Enviar"
+        android:icon="@drawable/ic_enviar"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/menu_receber_provas"
+        android:title="Receber Provas"
+        android:icon="@drawable/ic_receber"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/menu_mapa"
+        android:title="Visualizar Mapa"
+        android:icon="@drawable/ic_mapa"
+        app:showAsAction="always"/>
+
+</menu>
