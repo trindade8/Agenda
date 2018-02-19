@@ -6,6 +6,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,7 +19,11 @@ import java.io.File;
 import br.com.alura.agenda.DAO.AlunoDAO;
 import br.com.alura.agenda.helper.FormularioHelper;
 import br.com.alura.agenda.modelo.Aluno;
+import br.com.alura.agenda.retro.RetrofitInializador;
 import br.com.alura.agenda.tasks.InsereAlunoTask;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FormularioActivity extends AppCompatActivity {
 
@@ -120,7 +125,20 @@ public class FormularioActivity extends AppCompatActivity {
 
         dao.close();
 
-        new InsereAlunoTask(aluno).execute();
+        //new InsereAlunoTask(aluno).execute();
+        Call insere = new RetrofitInializador().getAlunoService().insere(aluno);
+        insere.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                Log.i("onResponse","Requisição com sucesso!" );
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Log.e("onFailure","Requisição com erro!" );
+
+            }
+        });
     }
 
     //propriedades
