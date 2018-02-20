@@ -48,7 +48,8 @@ public class AlunoDAO  extends SQLiteOpenHelper {
     {
         SQLiteDatabase database = getWritableDatabase();
         ContentValues dados = pegaDadosAluno(aluno);
-        database.insert("Alunos",null,dados);
+        long id = database.insert("Alunos",null,dados);
+        aluno.setId(id);
 
 
     }
