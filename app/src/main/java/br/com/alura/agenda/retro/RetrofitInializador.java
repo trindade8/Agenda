@@ -9,6 +9,8 @@ package br.com.alura.agenda.retro;
 
 
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
@@ -18,7 +20,16 @@ public class RetrofitInializador {
 
     public  RetrofitInializador()
     {
-        retrofit = new Retrofit.Builder().baseUrl("http://192.168.1.106:8080/api/").addConverterFactory(JacksonConverterFactory.create())
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient.Builder client = new OkHttpClient.Builder();
+        client.addInterceptor(interceptor);
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.106:8080/api/")
+                .addConverterFactory(JacksonConverterFactory.create())
+                .client(client.build())
                 .build();
 
         // teste;

@@ -19,6 +19,8 @@ android {
 }
 
 dependencies {
+
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -34,5 +36,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-jackson
     compile group: 'com.squareup.retrofit2', name: 'converter-jackson', version: '2.3.0'
+
+    compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.4.2'
+
 
 }
