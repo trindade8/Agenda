@@ -19,6 +19,7 @@ import java.io.File;
 import br.com.alura.agenda.DAO.AlunoDAO;
 import br.com.alura.agenda.helper.FormularioHelper;
 import br.com.alura.agenda.modelo.Aluno;
+import br.com.alura.agenda.retro.CallbackAlunoService;
 import br.com.alura.agenda.retro.RetrofitInializador;
 import br.com.alura.agenda.tasks.InsereAlunoTask;
 import retrofit2.Call;
@@ -127,18 +128,7 @@ public class FormularioActivity extends AppCompatActivity {
 
         //new InsereAlunoTask(aluno).execute();
         Call insere = new RetrofitInializador().getAlunoService().insere(aluno);
-        insere.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                Log.i("onResponse","Requisição com sucesso!" );
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Log.e("onFailure","Requisição com erro!" );
-
-            }
-        });
+        insere.enqueue(new CallbackAlunoService());
     }
 
     //propriedades
